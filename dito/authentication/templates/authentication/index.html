@@ -1,0 +1,151 @@
+{% extends 'authentication/base.html' %}
+{% load static %}
+
+
+{% block title %}
+Dito | Home
+{% endblock %}
+
+{% block content %}
+
+<!-- MAIN BODY -->
+<div class="px-5 mt-0">
+  <!-- ELEMENT ONE, introducer -->
+  <div class="mx-auto mb-5 mt-3 row align-items-center homeElement1">
+    <!-- image -->
+    <div class="col-lg-6 col-sm-12 p-0 mx-0">
+      <!---->
+      <div class="text-center p-0 m-auto rounded-0 w-100 align-items-center">
+        <img class="img-fluid w-75 h-75" style="border-radius: 20px;" src="{% static 'images/home1.png' %}"
+          alt="a happy picture">
+      </div>
+    </div>
+    <!-- heading and text -->
+    <div class="col-lg-5 col-sm-12 text-center mx-0 p-0 my-3">
+      <h1 class="mb-5 mt-3 homeHeadingText font-weight-normal">Do more, do better with Dito</h1>
+      <div class="mb-5 mx-5 text-left homeHeadingTextBody">
+        <p>Plan your day,<br>
+          Journal your thoughts,<br>
+          Complete your checklist.</p>
+        <p>Go on with your day much more efficiently.</p>
+
+      </div>
+      <!-- buttons -->
+      <div class="form-group">
+        {% if not user.is_authenticated %}
+        <a href="{% url 'authentication:login' %}" type="button"
+          class="btn btn-lg btn-info btn-block border-0 mx-auto btn-purple" style="width: 250px;">
+          Get Started</a>
+        {% endif %}
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ELEMENT TWO, Quote -->
+  <div class="mx-auto my-5 row align-items-center homeElement2">
+    <div class="col-lg-6 col-sm-11 text-center m-auto" style="color: white;">
+      <h1 class="mb-2 mx-2 quoteText">“A goal without a plan is just a wish”
+        </h2>
+        <p>-Antoine de Saint-Exupéry</p>
+    </div>
+  </div>
+
+  <!-- ELEMENT THREE, dito features -->
+  <div class="mx-auto my-5 text-center">
+    <h1 class="">Explore Dito</h1>
+  </div>
+
+  <!-- individual feature1 AGENDA -->
+  <div class="mx-auto my-5 p-0 row align-items-center homeElement3" style="background-color: #FEECEB;">
+
+    <!-- image -->
+    <!-- if logged in -->
+    {% if user.is_authenticated %}
+    <a href="{% url 'agenda:agenda_list' %}" class="col-lg-7 col-sm-12 p-0 mx-0">
+      <div class="text-center p-0 m-auto rounded-0 w-100 align-items-center">
+        <img class="img-fluid w-50 h-50" style="border-radius: 20px;" src="{% static 'images/agendaPic.png' %}"
+          alt="a happy picture">
+      </div>
+    </a>
+    {% else %}
+    <!-- if not logged in -->
+    <a class="col-lg-7 col-sm-12 p-0 mx-0">
+      <div class="text-center p-0 m-auto rounded-0 w-100 align-items-center">
+        <img class="img-fluid w-50 h-50" style="border-radius: 20px;" src="{% static 'images/agendaPic.png' %}"
+          alt="a happy picture">
+      </div>
+    </a>
+    {% endif %}
+
+    <!-- text -->
+    <div class="col-lg-5 col-sm-12 text-left row homeElement3t m-0 justify-content-center align-items-center"
+      style="color: white; background-color: #F38079;">
+      <div class="homeHeadingText">
+        <h1 class="mb-4">Agenda</h1>
+        <h1>Plan your day and events</h1>
+      </div>
+    </div>
+  </div>
+
+  <!-- individual feature2 JOURNAL -->
+  <div class="mx-auto my-5 p-0 row align-items-center homeElement3" style="background-color: #D0F4FF;">
+    <!-- text -->
+    <div class="col-lg-5 col-sm-12 text-left row homeElement3t m-0 justify-content-center align-items-center"
+      style="color: white; background-color: #6DDCFF;">
+      <div class="homeHeadingText">
+        <h1 class="mb-4">Journal</h1>
+        <h1>Write and save your thoughts</h1>
+      </div>
+    </div>
+    <!-- image -->
+    <!-- if logged in -->
+    {% if user.is_authenticated %}
+    <a href="{% url 'journal:journal_list' %}" class="col-lg-7 col-sm-12 p-0 mx-0">
+      <div class="text-center p-0 m-auto rounded-0 w-100 align-items-center">
+        <img class="img-fluid w-50 h-50" style="border-radius: 20px;" src="{% static 'images/journalPic.png' %}"
+          alt="a happy picture">
+      </div>
+    </a>
+    {% else %}
+    <a class="col-lg-7 col-sm-12 p-0 mx-0">
+      <div class="text-center p-0 m-auto rounded-0 w-100 align-items-center">
+        <img class="img-fluid w-50 h-50" style="border-radius: 20px;" src="{% static 'images/journalPic.png' %}"
+          alt="a happy picture">
+      </div>
+    </a>
+    {% endif %}
+    
+    
+    
+  </div>
+
+  <!-- individual feature3 CHECKLIST -->
+  <div class="mx-auto my-5 p-0 row align-items-center homeElement3" style="background-color: #FFF5BF;">
+    <!-- image -->
+    {% if user.is_authenticated %}
+    <a href="{% url 'todo:todo_list' %}" class="col-lg-7 col-sm-12 p-0 mx-0">
+      <div class="text-center p-0 m-auto rounded-0 w-100 align-items-center">
+        <img class="img-fluid w-50 h-50" style="border-radius: 20px;" src="{% static 'images/checklistPic.png' %}"
+          alt="a happy picture">
+      </div>
+    </a>
+    {% else %}
+    <a class="col-lg-7 col-sm-12 p-0 mx-0">
+      <div class="text-center p-0 m-auto rounded-0 w-100 align-items-center">
+        <img class="img-fluid w-50 h-50" style="border-radius: 20px;" src="{% static 'images/checklistPic.png' %}"
+          alt="a happy picture">
+      </div>
+    </a>
+    {% endif %}
+    <!-- text -->
+    <div class="col-lg-5 col-sm-12 text-left row homeElement3t m-0 justify-content-center align-items-center"
+      style="background-color: #FFE76B;">
+      <div class="homeHeadingText">
+        <h1 class="mb-4">Todo Checklist</h1>
+        <h1>List down things to do</h1>
+      </div>
+    </div>
+  </div>
+
+  {% endblock content %}

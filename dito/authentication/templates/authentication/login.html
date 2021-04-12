@@ -1,0 +1,63 @@
+{% extends "authentication/base.html" %}
+
+{% load static %}
+{% load bootstrap4 %}
+
+{% block title %}
+Dito | Login
+{% endblock %}
+
+{% block content %}
+
+<!--main body content -->
+<div class="position-relative overflow-hidden py-0 px-5 px-md-5 m-0 text-center">
+  <!-- login content -->
+  <div class="my-4 row p-0 justify-content-center">
+    <div class="col-lg-2"></div>
+    <!--container for shadow -->
+    <div class="container row col-lg-8 p-0 shadow" style="background-color: white;">
+      <!-- input space -->
+      <div class="col-lg-6 p-0 m-0 align-content-center">
+        <!---->
+        <div class=" text-center w-100 py-5 h-100 rounded-0 justify-content-center">
+          <!---->
+          <!-- form below -->
+          <form class="loginInputCard form-signin mt-5" method="POST">
+            {% csrf_token %}
+            <!---->
+            <!-- label -->
+
+            <h1 class="loginHeader h1 font-weight-bold">Login</h1>
+            <!-- full email/username entry -->
+            <div class="form-group mb-4">
+              <input type="text" id="inputUsername" class="loginTextInput form-control-lg border" name='username'
+                placeholder="username" required>
+            </div>
+            <!-- full password entry -->
+            <div class="form-group mb-5">
+              <input type="password" id="inputPassword" name="password" class="loginTextInput form-control-lg border"
+                placeholder="password" required>
+            </div>
+            <!-- buttons -->
+            <div class="loginButtonGroup form-group mb-4">
+              <button class="loginContinue btn btn-lg  btn-info btn-block border-0 btn-purple"
+                type="submit">Continue</button>
+              <a href="{% url 'authentication:signup' %}" type="button" class="gotoSignup btn btn-link">New here?
+                Create an account</a>
+            </div>
+          </form>
+        </div>
+      </div>
+      <!-- picture space-->
+      <div class="col-lg-6 p-0 m-0 loginPic">
+        <!---->
+        <div class="text-center p-0 m-auto rounded-0">
+          <img class="w-100 h-100" src="{% static 'images/login.png' %}" alt="a happy picture">
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-2"></div>
+  </div>
+</div>
+
+{% endblock content %}

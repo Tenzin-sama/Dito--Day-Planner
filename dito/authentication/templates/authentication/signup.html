@@ -1,0 +1,99 @@
+{% extends 'authentication/base.html' %}
+
+{% load static %}
+
+{% load bootstrap4 %}
+
+{% block title %}
+Dito | Signup
+{% endblock %}
+
+{% block content %}
+<!--main body content -->
+<div class="position-relative overflow-hidden py-0 px-5 px-md-5 m-0 text-center mainBodyRegis">
+    <!-- signup content -->
+    <div class="my-4 row p-0 justify-content-center">
+        <div class="col-lg-2"></div>
+        <!--container for shadow -->
+        <div class="container row col-lg-8 col-sm-11 p-0 shadow" style="background-color: white;">
+            <!-- picture space-->
+            <div class="col-lg-6 p-0 m-0 loginPic">
+                <!---->
+                <div class="text-center p-0 m-auto rounded-0">
+                    <img class="w-100 h-100" src="{% static 'images/signup.png' %}" alt="a happy picture">
+                </div>
+            </div>
+            <!-- input space -->
+            <div class="col-lg-6 p-0 m-0 align-content-center">
+                <!---->
+                <div class=" text-center w-100 py-5 h-100 rounded-0 justify-content-center">
+                    <!---->
+                    <!-- form below -->
+                    <form class="form-signin mt-5" method="POST">
+                        <!---->
+                        <!-- label -->
+                        <h1 class="signupHeader h1 font-weight-bold">Signup</h1>
+                        <!-- input elements -->
+                        <div class="mb-3 px-4">
+                            {% csrf_token %}
+                            <!-- full username entry -->
+                            <div class="form-group mb-3">
+
+                                <input type="text" id="inputUsername" name="username" class=" form-control border"
+                                    placeholder="username" required>
+                            </div>
+                            <!-- full name entries -->
+                            <div class="form-group mb-3 mx-1 row p-0">
+                                <input type="text" id="inputFirstName" name="first_name"
+                                    class=" form-control border col-lg-6 halfEntry" placeholder="first name" required>
+                                <input type="text" id="inputLastName" name="last_name"
+                                    class=" form-control border  col-lg-6" placeholder="last name" required>
+                            </div>
+                            <!-- full email entry -->
+                            <div class="form-group mb-3">
+                                <input type="email" id="inputEmail" class=" form-control border" name="email"
+                                    placeholder="email" required>
+                            </div>
+
+                            <!-- full password entries -->
+                            <div class="form-group mb-3 mx-1 row p-0">
+                                <input type="password" id="inputPassword" name="password1"
+                                    class=" form-control border col-lg-6 halfEntry" placeholder="password" required>
+                                <input type="password" id="inputPassword" class=" form-control border  col-lg-6"
+                                    placeholder="re-password" name="password2" required>
+                            </div>
+                            <!-- buttons -->
+                            <div class="form-group mb-5 mx-1 row p-0">
+
+                                <select name="user_type" class="form-control" required>
+                                    <option value="" selected disabled>Type</option>
+                                    <option value="1">Admin</option>
+                                    <option value="2">Personal</option>
+                                </select>
+
+                            </div>
+                            <div class="loginButtonGroup form-group mb-4">
+                                <button class="loginContinue btn btn-lg  btn-info btn-block border-0 btn-purple"
+                                    type="submit">Continue</button>
+                                <a href="{% url 'authentication:login' %}" type="button"
+                                    class="gotoSignup btn btn-link">Already
+                                    have an account?</a>
+                            </div>
+
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-lg-2"></div>
+    </div>
+</div>
+{% endblock content %}
+<!-- <form action="" method="post">
+        {% csrf_token %}
+        {{user_form.as_p}}
+
+    <input type="submit" value="submit">
+    </form> -->
