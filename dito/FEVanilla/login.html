@@ -1,0 +1,137 @@
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- links for css and bootstrap -->
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+      integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+
+
+
+    <!-- custom CSS -->
+    <link rel="stylesheet" type="text/css" href="css/ditoCSS.css">
+
+    <!-- logo -->
+    <link rel="shortcut icon" href="images/logoDito.png" type="image/x-icon">
+
+    <title>Dito | Login</title>
+    <!-- scripts -->
+    <!-- <script type="text/javascript" src="script/nav.js"></script> -->
+
+  </head>
+
+  <body style="background-color: #F2F2F2 ;">
+    <!-- navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+      <a class="navbar-brand" href="#">
+        <img class="brandimg-bb" src="images/logoDito.png" height="40px">
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+        aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-item nav-link" href="#">Home </a>
+          <a class="nav-item nav-link" href="#">Agenda</a>
+          <a class="nav-item nav-link" href="#">Journal</a>
+          <a class="nav-item nav-link" href="#">Todo Checklist</a>
+        </div>
+
+      </div>
+      <div class="form-inline my-2 my-lg-0">
+        <a href="#" class="btn btn-light my-2 my-sm-0 btn-login" style="color: #FE8187;" type="">Login</a>
+      </div>
+    </nav>
+
+    <!--main body content -->
+    <div class="position-relative overflow-hidden py-0 px-5 px-md-5 m-0 text-center">
+      <!-- login content -->
+      <div class="my-4 row p-0 justify-content-center">
+        <div class="col-lg-2"></div>
+        <!--container for shadow -->
+        <div class="container row col-lg-8 p-0 shadow" style="background-color: white;">
+          <!-- input space -->
+          <div class="col-lg-6 p-0 m-0 align-content-center">
+            <!---->
+            <div class=" text-center w-100 py-5 h-100 rounded-0 justify-content-center">
+              <!---->
+              <!-- form below -->
+              <form class="loginInputCard form-signin mt-5">
+                <!---->
+                <!-- label -->
+                <h1 class="loginHeader h1 font-weight-bold">Login</h1>
+                <!-- full email/username entry -->
+                <div class="form-group mb-4">
+                  <input type="email" id="inputEmail" class="loginTextInput form-control-lg border"
+                    placeholder="email or username" required>
+                </div>
+                <!-- full password entry -->
+                <div class="form-group mb-5">
+                  <input type="password" id="inputPassword" class="loginTextInput form-control-lg border"
+                    placeholder="password" required>
+                </div>
+                <!-- buttons -->
+                <div class="loginButtonGroup form-group mb-4">
+                  <button class="loginContinue btn btn-lg btn-info btn-block border-0 btn-purple"
+                    type="submit">Continue</button>
+                  <a href="testSignup.html" type="button" class="gotoSignup btn btn-link">New here?
+                    Create an account</a>
+                </div>
+              </form>
+            </div>
+          </div>
+          <!-- picture space-->
+          <div class="col-lg-6 p-0 m-0 loginPic">
+            <!---->
+            <div class="text-center p-0 m-auto rounded-0">
+              <img class="w-100 h-100" src="images/login.png" alt="a happy picture">
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-2"></div>
+      </div>
+    </div>
+
+    <!-- footer -->
+    <hr>
+    <footer class="container pt-1 pb-2">
+      <div class="row">
+        <div class="col-6 col-md">
+          <a class="list-unstyled text-muted" href="#">Dito</a>
+        </div>
+        <div class="col-6 col-md">
+          <a class="list-unstyled text-muted" href="#">FAQ</a>
+        </div>
+        <div class="col-6 col-md">
+          <a class="list-unstyled text-muted" href="#">Terms</a>
+        </div>
+        <div class="col-6 col-md">
+          <a class="list-unstyled text-muted" href="#">About Us</a>
+        </div>
+        <div class="col-6 col-md">
+          <a class="list-unstyled text-muted" href="#">Contact Us</a>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 col-md">
+          <small class="d-block mt-3 text-muted" style="text-align: center;">
+            &copy;2021 Dito</small>
+        </div>
+      </div>
+    </footer>
+
+    <!-- scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+      crossorigin="anonymous"></script>
+  </body>
+
+</html>

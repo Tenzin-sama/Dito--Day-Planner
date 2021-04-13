@@ -1,11 +1,149 @@
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Journal | Dito</title>
-</head>
-<body>
-    
-</body>
+
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+      integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+
+    <!-- custom CSS -->
+    <link rel="stylesheet" type="text/css" href="css/ditoCSS.css">
+
+    <!-- logo -->
+    <link rel="shortcut icon" href="images/logoDito.png" type="image/x-icon">
+
+    <title>Dito | Journal</title>
+  </head>
+
+  <body>
+    <!-- navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+      <a class="navbar-brand" href="#">
+        <img class="brandimg-bb" src="images/logoDito.png" height="40px">
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+        aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-item nav-link" href="#">Home</a>
+          <a class="nav-item nav-link " href="#">Agenda</a>
+          <a class="nav-item nav-link active" href="#">Journal <span class="sr-only">(current)</span></a>
+          <a class="nav-item nav-link" href="#">Todo Checklist</a>
+        </div>
+
+      </div>
+      <div class="form-inline my-2 my-lg-0">
+        <a href="#" class="btn btn-light my-2 my-sm-0 btn-login" style="color: #FE8187;" type="">Login</a>
+      </div>
+    </nav>
+
+    <!-- MAIN BODY -->
+    <div class="mt-0">
+      <!-- ELEMENT ONE, header -->
+      <div class="mx-auto mb-5 mt-5 row align-items-center journalElement1">
+        <!-- image -->
+        <div class="col-lg-2 col-sm-3 p-0 mx-0">
+          <!---->
+          <div class="text-center p-0 m-auto rounded-0 w-100 align-items-center">
+            <img class="img-fluid w-75 h-75" style="border-radius: 20px;" src="images/journalPic.png"
+              alt="a happy picture">
+          </div>
+        </div>
+        <!-- heading and text -->
+        <div class="col-lg-3 col-sm-7 text-center mx-0 p-0 my-3">
+          <div class="mb-5 mx-3 text-left homeHeadingTextBody">
+            <div class="homeHeadingText">
+              <h1 class="mb-2 font-weight-bold">Journal</h1>
+              <h3>Write your thoughts</h3>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ELEMENT TWO, Journal Entries -->
+      <div class="m-0 row align-items-center pb-5 journalElement2">
+        <div class="col-lg-12 col-sm-12 text-left mx-2 px-3 pt-3">
+          <div class="px-4 row justify-content-between">
+            <!-- title -->
+            <h1 class="mb-2 mt-3 text-white">My Journal Entries</h1>
+              
+          </div>
+
+          <hr class="mb-4" style="background-color: white;">
+
+          <!-- individual journal entry -->
+          <div class="col-lg-11 col-sm-12 text-left mx-auto p-2 px-3 mb-4 indivCourseAssignment">
+            <a href="homepage.html" style="text-decoration: none; color: black;">
+              <h3 class="my-2">Good day today</h3>
+              <h5 class="mb-4">Created:</h5>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- ELEMENT THREE, dito features -->
+      <div class="mx-auto my-5 text-center">
+        <h1 class="">Add new journal entry</h1>
+      </div>
+      <div class="m-0 row align-items-center pb-5 journalElement3">
+        <form class="mx-5 my-5">
+          <div class="form-group">
+            <h3 for="exampleFormControlInput1" style="color: white;">Title</h3>
+            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="journal title">
+          </div>
+        </form>
+      </div>
+    </div>
+
+
+
+
+      <!-- footer -->
+      <hr>
+      <footer class="container pt-1 pb-2">
+        <div class="row">
+          <div class="col-6 col-md">
+            <a class="list-unstyled text-muted" href="#">Dito</a>
+          </div>
+          <div class="col-6 col-md">
+            <a class="list-unstyled text-muted" href="#">FAQ</a>
+          </div>
+          <div class="col-6 col-md">
+            <a class="list-unstyled text-muted" href="#">Terms</a>
+          </div>
+          <div class="col-6 col-md">
+            <a class="list-unstyled text-muted" href="#">About Us</a>
+          </div>
+          <div class="col-6 col-md">
+            <a class="list-unstyled text-muted" href="#">Contact Us</a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 col-md">
+            <small class="d-block mt-3 text-muted" style="text-align: center;">
+              &copy;2021 Dito</small>
+          </div>
+        </div>
+      </footer>
+
+      <!-- Optional JavaScript; choose one of the two! -->
+
+      <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+      <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+        crossorigin="anonymous"></script>
+
+
+  </body>
+
 </html>
