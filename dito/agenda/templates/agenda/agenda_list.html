@@ -1,0 +1,215 @@
+{% extends 'authentication/base.html' %}
+{% load static %}
+
+{% block title %}
+  Dito | Agenda
+{% endblock %}
+
+{% block content %}
+
+<!-- Moment.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.23.0/moment.min.js"
+  integrity="sha256-VBLiveTKyUZMEzJd6z2mhfxIqz3ZATCuVMawPZGzIfA=" crossorigin="anonymous"></script>
+
+<!-- Tempus Dominus Bootstrap 4 -->
+<link rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.1.2/css/tempusdominus-bootstrap-4.min.css"
+  integrity="sha256-XPTBwC3SBoWHSmKasAk01c08M6sIA5gF5+sRxqak2Qs=" crossorigin="anonymous" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.1.2/js/tempusdominus-bootstrap-4.min.js"
+  integrity="sha256-z0oKYg6xiLq3yJGsp/LsY9XykbweQlHl42jHv2XTBz4=" crossorigin="anonymous"></script>
+
+<!-- ditoFE -->
+<!-- MAIN BODY -->
+<div class="mt-0">
+  <!-- ELEMENT ONE, header -->
+  <div class="mx-auto mb-5 mt-5 row align-items-center journalElement1">
+    <!-- image -->
+    <div class="col-lg-2 col-sm-3 p-0 mx-0">
+      <div class="text-center p-0 m-auto rounded-0 w-100 align-items-center">
+        <img class="img-fluid w-75 h-75" style="border-radius: 20px;" src="{% static 'images/agendaPic.png' %}"
+          alt="a happy picture">
+      </div>
+    </div>
+    <!-- heading and text -->
+    <div class="col-lg-3 col-sm-7 text-center mx-0 p-0 my-3">
+      <div class="mb-5 mx-3 text-left homeHeadingTextBody">
+        <div class="homeHeadingText">
+          <h1 class="mb-2 font-weight-bold">Agenda</h1>
+          <h3>Plan your day and events</h3>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ELEMENT TWO, Indiv Agendas -->
+  <div class="m-0 row align-items-center pb-5 agendaElement2">
+    <!-- Agendas header -->
+    <div class="col-lg-12 col-sm-12 text-left mx-2 px-3 pt-3">
+      <div class="px-4 row justify-content-between">
+        <h1 class="mb-2 mt-3 text-white">My Agenda</h1>
+      </div>
+      <hr class="mb-4" style="background-color: white;">
+
+      {% for agenda in agendas %}
+      <!-- individual agenda -->
+      <div class="mx-5 my-5 row align-items-center p-1  " style="background-color: white; border-radius: 25px;">
+
+        <!-- color tag -->
+        {% if agenda.color == "red" %}
+        <span class="col-1 agendaColorTag align-self-lg-start mx-2 my-3" style="background-color: #FE8187;">
+        </span>
+        {% elif agenda.color == "blue" %}
+        <span class="col-1 agendaColorTag align-self-lg-start mx-2 my-3" style="background-color: #2f8dda;">
+        </span>
+        {% elif agenda.color == "green" %}
+        <span class="col-1 agendaColorTag align-self-lg-start mx-2 my-3" style="background-color: #62be36;">
+        </span>
+        {% endif %}
+        <!-- heading and text -->
+        <div class="col-lg-8 col-sm-8 text-left mx-2 px-3">
+          <h2 class="mb-2 mt-3">{{agenda.title}}</h2>
+          <hr>
+          <p class="mb-1 indivCourseOverviewText">{{agenda.description}}</p>
+          <p class="mb-3 indivCourseOverviewText">{{agenda.date}}</p>
+        </div>
+
+        <!-- expanded form for updating agenda-->
+        <div class="col-10 text-left mx-5align-items-center">
+          <form action="." method="POST" class="update-form" id="update-form-{{agenda.pk}}">
+            {% csrf_token %}
+            <div class="col-10 text-left mx-auto mb-3 p-5 align-items-center border shadow">
+              <h3>Update Agenda</h3>
+              <input class="form-control mb-2" type="text" name="title" placeholder="Title" value="{{agenda.title}}">
+              <input class="form-control mb-2" type="textarea" name="description" placeholder="Description"
+                value="{{agenda.description}}">
+              <div class="mb-2 row">
+                <label class="col-1 mx-2">Color:</label>
+                <select class="form-control col-2" name="color">
+                  <option value="red">Red</option>
+                  <option value="blue">Blue</option>
+                  <option value="green">Green</option>
+                </select>
+                <input type="hidden" name="agenda_pk" value="{{agenda.pk}}">
+                <input type="submit" class="btn btn-info col-1 mx-4" value="Update" name="update_agenda">
+            </div>
+            
+            </div>
+
+          </form>
+        </div>
+
+
+        <!-- buttons -->
+        <div class="row mx-auto justify-content-around">
+          <div class="form-group col-5">
+            <a type="button" class="btn btn-lg btn-warning btn-block border-0 mx-auto show-form"
+              id="show-form-{{agenda.pk}}" value="{{agenda.pk}}" style="width: 200px; color: white;">
+              Update</a>
+            <a type="button" class="btn btn-lg btn-warning btn-block border-0 mx-auto hide-form"
+              id="hide-form-{{agenda.pk}}" value="{{agenda.pk}}" style="width: 200px; color: white;">
+              Close Form</a>
+          </div>
+          <div class="col-lg-1">
+          </div>
+          <div class="form-group col-5">
+            <form action="." method="POST">
+              {% csrf_token %}
+              <input type="hidden" name="agenda_pk" value="{{agenda.pk}}">
+              <button name="remove_agenda" class="btn btn-lg btn-info btn-purple btn-block border-0 mx-auto"
+                style="width: 200px;">
+                Delete</button>
+            </form>
+
+          </div>
+        </div>
+      </div>
+      {% empty %}
+      <h3 class="mx-3 mt-4 text-center" style="color: white;">Nothing here for now...</h3>
+      {% endfor %}
+
+    </div>
+  </div>
+</div>
+<!-- ELEMENT THREE, Create new -->
+<div class="mx-5 my-5 row align-items-center agendaElement3">
+  <div class="col-lg-6 col-sm-11 text-center m-auto" style="color: white;">
+    <h3 class="mb-3 mx-2 quoteText">Got an event or an appointment?</h3>
+    <div class="form-group mb-1">
+      <a href="homepage.html" type="button" class="btn btn-lg btn-info btn-block border-0 mx-auto btn-purple"
+        style="width: 250px;" data-toggle="modal" data-target="#staticBackdrop">
+        Add new agenda</a>
+    </div>
+  </div>
+</div>
+<!-- Modal for addnew -->
+<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1"
+  aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">New Agenda</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="." method="POST">
+          {% csrf_token %}
+          <input class="form-control mb-2" type="text" name="title" placeholder="Title">
+          <input class="form-control mb-2" type="textarea" name="description" placeholder="Description">
+          <div class="input-group date mb-2" id="datetimepicker1" data-target-input="nearest">
+            <input type="text" name="date" class="form-control datetimepicker-input" data-target="#datetimepicker1"
+              placeholder="Use the button on the right" />
+            <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
+              <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+            </div>
+          </div>
+          <div class="row justify-content-around">
+            <div class="row justify-content-around">
+              <label>Color:</label>
+              <select name="color" class="form-control">
+                <option value="red">Red</option>
+                <option value="blue">Blue</option>
+                <option value="green">Green</option>
+              </select>
+            </div>
+
+            <input type="submit" class="btn btn-info btn-purple" value="Create" name="create_agenda">
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+  $(function () {
+    $("#datetimepicker1").datetimepicker({
+      format: 'DD/MM/YYYY HH:mm',
+    });
+  });
+
+  $(document).ready(function () {
+    $('.hide-form').hide();
+    $('.update-form').hide();
+  })
+
+  $('.show-form').click(function () {
+    var value = $(this).attr('value')
+    $('#hide-form-' + value).show();
+    $('#show-form-' + value).hide();
+    $('#update-form-' + value).show();
+  })
+
+  $('.hide-form').click(function () {
+    var value = $(this).attr('value')
+    $('#hide-form-' + value).hide();
+    $('#show-form-' + value).show();
+    $('#update-form-' + value).hide();
+  })
+
+</script>
+{% endblock content %}
