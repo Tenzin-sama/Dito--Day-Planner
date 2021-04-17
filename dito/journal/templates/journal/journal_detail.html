@@ -1,0 +1,36 @@
+{% extends 'authentication/base.html' %}
+{% load static %}
+{% load bootstrap4 %}
+
+{% block title %}
+Dito | Journal More
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    {% if journal.user == user %}
+    <div>
+        <p>{{journal.title}}</p>
+        <p>{{ journal.content|safe }}</p>
+        <p>{{journal.date}}</p>
+    </div>
+
+    <form action="." method="POST">
+        {% csrf_token %}
+        {{update_journal_form.media}}
+        <input type="text" name="title" value="{{journal.title}}">
+        {% bootstrap_field update_journal_form.content %}
+        <input type="submit" name="update_journal" value="Update" class="btn btn-warning">
+    </form>
+    <form method="POST">
+        {% csrf_token %}
+        <button class="btn btn-danger" name="remove_journal">Delete</button>
+    </form>
+    {% else %}
+    <div class="jumbotron">
+        You do not have access to this page
+    </div>
+    {% endif %}
+</div>
+
+{% endblock content %}

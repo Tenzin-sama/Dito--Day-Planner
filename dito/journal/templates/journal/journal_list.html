@@ -1,0 +1,75 @@
+{% extends 'authentication/base.html' %}
+{% load static %}
+{% load bootstrap4 %}
+
+{% block title %}
+  Dito | Journal
+{% endblock %}
+
+{% block content %}
+<!-- fe -->
+<!-- MAIN BODY -->
+<div class="mt-0">
+  <!-- ELEMENT ONE, header -->
+  <div class="mx-auto mb-5 mt-5 row align-items-center journalElement1">
+    <!-- image -->
+    <div class="col-lg-2 col-sm-3 p-0 mx-0">
+      <!---->
+      <div class="text-center p-0 m-auto rounded-0 w-100 align-items-center">
+        <img class="img-fluid w-75 h-75" style="border-radius: 20px;" src="{% static 'images/journalPic.png' %}" alt="a happy picture">
+      </div>
+    </div>
+    <!-- heading and text -->
+    <div class="col-lg-3 col-sm-7 text-center mx-0 p-0 my-3">
+      <div class="mb-5 mx-3 text-left homeHeadingTextBody">
+        <div class="homeHeadingText">
+          <h1 class="mb-2 font-weight-bold">Journal</h1>
+          <h3>Write your thoughts</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ELEMENT TWO, Journal Entries -->
+  <div class="m-0 row align-items-center pb-5 journalElement2">
+    <div class="col-lg-12 col-sm-12 text-left mx-2 px-3 pt-3">
+      <div class="px-4 row justify-content-between">
+        <!-- title -->
+        <h1 class="mb-2 mt-3 text-white">My Journal Entries</h1>
+      </div>
+      <hr class="mb-4" style="background-color: white;">
+
+      {% for journal in journals %}
+      <!-- individual journal entry -->
+      <div class="col-lg-11 col-sm-12 text-left mx-auto p-2 px-4 mb-4 indivCourseAssignment">
+        <a href="{% url 'journal:journal_detail' pk=journal.pk %}" style="text-decoration: none; color: black;">
+          <h3 class="my-2">{{journal.title}}</h3>
+          <hr>
+          <h5 class="my-1">{{ journal.content|safe }}</h5>
+          <p class="mb-4">Created on: {{journal.date}}</p>
+        </a>
+      </div>
+      {% empty %}
+      <h1>No journals yet, add new.</h1>
+      {% endfor %}
+
+    </div>
+  </div>
+
+  <!-- ELEMENT THREE, New Journal Entry -->
+  <div class="mx-auto my-5 text-center">
+    <h1 class="">Add new journal entry</h1>
+  </div>
+  <div class="m-0 row align-items-center pb-5 journalElement3">
+    <form action="." method="POST" class="m-5">
+      {% csrf_token %}
+      {{create_journal_form.media}}
+      {% bootstrap_field create_journal_form.title %}
+      {% bootstrap_field create_journal_form.content %}
+      <input type="submit" class="btn btn-info btn-purple border-0" value="Create Journal" name="create_journal">
+    </form>
+  </div>
+</div>
+
+
+  {% endblock content %}
