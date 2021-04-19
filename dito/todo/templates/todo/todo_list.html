@@ -1,0 +1,144 @@
+{% extends 'authentication/base.html' %}
+{% load static %}
+{% load bootstrap4 %}
+
+{% block title %}
+  Dito | Todo Checklist
+{% endblock %}
+
+{% block content %}
+
+<!-- fe -->
+<!-- MAIN BODY -->
+<div class="mt-0">
+  <!-- ELEMENT ONE, header -->
+  <div class="mx-auto mb-5 mt-5 row align-items-center journalElement1">
+    <!-- image -->
+    <div class="col-lg-2 col-sm-3 p-0 mx-0">
+      <div class="text-center p-0 m-auto rounded-0 w-100 align-items-center">
+        <img class="img-fluid w-75 h-75" style="border-radius: 20px;" src="{% static 'images/checklistPic.png' %}"
+          alt="a happy picture">
+      </div>
+    </div>
+    <!-- heading and text -->
+    <div class="col-lg-3 col-sm-7 text-center mx-0 p-0 my-3">
+      <div class="mb-5 mx-3 text-left homeHeadingTextBody">
+        <div class="homeHeadingText">
+          <h1 class="mb-2 font-weight-bold">Todo Checklist</h1>
+          <h3>List down things to do</h3>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ELEMENT TWO, Indiv tofoList -->
+  <div class="m-0 row align-items-center pb-5 agendaElement2">
+    <!-- to do list header -->
+    <div class="col-lg-12 col-sm-12 text-left mx-2 px-3 pt-3">
+      <div class="px-4 row justify-content-between">
+        <h1 class="mb-2 mt-3 text-white">My Todo Lists</h1>
+      </div>
+      <hr class="mb-4" style="background-color: white;">
+
+      <!-- div for all checklists -->
+      <div class="row my-5 justify-content-start align-items-center ">
+
+        {% for category in todo_categories %}
+        <!-- individual checklist -->
+        <div class="mx-3 mb-2 todoChecklist">
+          <div class="m-3 row justify-content-between">
+            <h3 class="">{{category.name}}</h3>
+            <form action="." method="POST">
+              {% csrf_token %}
+
+
+              <input type="hidden" name="category_pk" value="{{category.pk}}">
+              <button name="delete_category" class="deleteList">
+                <h4 style="color: white;">X</h4>
+              </button>
+
+              </p>
+            </form>
+
+          </div>
+          <hr class="mb-3">
+          {% for item in todo_items %}
+          {% if item.category == category %}
+          <!-- individual list item -->
+          <div class="mx-2 mb-2 row justify-content-between">
+            <form action="." method="POST">
+              <div class="d-flex m-0 w-100 row justify-content-around">
+                {% csrf_token %}
+                <input type="hidden" name="item_pk" value="{{item.pk}}">
+
+                {% if item.completed %}
+                <div class="mx-3 row">
+                  <button name="uncheck_item" class="checkedboxDito">
+                  </button>
+                  <del>
+                    <h5 class="mx-1">{{item.text}}</h5>
+                  </del>
+                </div>
+                {% else %}
+                <div class="mx-3 row">
+                  <button name="check_item" class="uncheckedboxDito">
+                  </button>
+                  <h5 class="mx-1">{{item.text}}</h5>
+                </div>
+                {% endif %}
+
+                <div class="mx-3 align-self-end">
+                  <button name="remove_item" class="deleteListItem">
+                    <h4 style="color: gray;">X</h4>
+                  </button>
+                </div>
+              </div>
+
+            </form>
+
+          </div>
+          {% endif %}
+          {% endfor %}
+          <!-- adding new items -->
+          <div class="mt-4 mx-3 mb-2 row justify-content-between">
+            <form class="form-inline" action="." method="POST">
+              {% csrf_token %}
+              <input class="form-control" placeholder="new item" type="text" name="text" required>
+              <input class="form-control" type="hidden" name="item_category" value="{{category.pk}}">
+              <input type="submit" class="btn btn-info btn-pink form-control text-center" value="+" name="create_item">
+            </form>
+          </div>
+
+        </div>
+        {% empty %}
+        <h1>No checklist yet.</h1>
+        {% endfor %}
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ELEMENT THREE, Create new -->
+  <div class="mx-5 my-5 py-4 row align-items-center agendaElement3">
+    <div class="col-lg-6 col-sm-11 text-center m-auto" style="color: white;">
+      <h3 class="mb-3 mx-2 quoteText">Something to do or tasks to complete?</h3>
+      <div class="form-group mb-1 justify-content-center">
+        <form class="form-inline mb-1 justify-content-center"" action="." method="POST">
+          <div class="mb-1 justify-content-center"">
+            {% csrf_token %}
+            <input class="form-control" type="text" name="name" placeholder="Checklist title" required>
+            <input type="submit" class="btn btn-info border-0 btn-purple" value="Add new list" name="create_category"
+              style="width: 200px;">
+
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+{% endblock content %}
