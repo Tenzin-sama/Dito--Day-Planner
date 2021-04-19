@@ -1,0 +1,92 @@
+{% extends 'authentication/base.html' %}
+{% load static %}
+
+{% block title %}
+Admin Dashboard
+{% endblock %}
+
+{% block content %}
+<!-- fe -->
+{% if user.user_type == 1 %}
+<!-- MAIN BODY -->
+<div class="mt-0">
+  <!-- ELEMENT ONE, header -->
+  <div class="mx-auto mb-5 mt-5 row align-items-center journalElement1">
+    <!-- image -->
+    <div class="col-lg-2 col-sm-3 p-0 mx-0">
+      <div class="text-center p-0 m-auto rounded-0 w-100 align-items-center">
+        <img class="img-fluid w-75 h-75" style="border-radius: 20px;" src="{% static 'images/adminPanel.png' %}"
+          alt="a happy picture">
+      </div>
+    </div>
+    <!-- heading and text -->
+    <div class="col-lg-5 col-sm-7 text-center mx-0 p-0 my-3">
+      <div class="mb-5 mx-3 text-left homeHeadingTextBody">
+        <div class="homeHeadingText">
+          <h1 class="mb-2 font-weight-bold">Admin Dashboard</h1>
+          <h3>Admin priviledges and control</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ELEMENT TWO, dashboard backbase-->
+<div class="mx-auto my-5 py-4 row align-items-center homeElement2a rounded-0">
+  <!-- user count -->
+  <div class="col-lg-11 col-sm-11 mx-auto p-3 mb-3" style=" background-color: white; border-radius: 20px;">
+    <div>
+      <h1>Number of users: {{user_count|add:"-3" }}</h1>
+    </div>
+  </div>
+  <!-- dashboard table -->
+  <div class="col-lg-11 col-sm-11 mx-auto p-3 mb-3" style="border-radius: 20px;">
+    <div class="p-0 m-0">
+      <table class="table m-0" style="background-color: white; border-radius: 20px; ">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Full name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Username</th>
+            <th scope="col">Actions</th>
+
+          </tr>
+        </thead>
+        <tbody>
+
+          <!-- individual user row -->
+          {% for user_object in users %}
+          {% if user_object.user_type == 2 and user_object.is_superuser == False %}
+          <tr>
+            <td>{{user_object.first_name}} {{user_object.last_name}}</td>
+            <td>{{user_object.email}}</td>
+            <td>{{user_object.username}}</td>
+            <td>
+              <div class="row justify-content-around">
+                <form action="." method="POST">
+                  {% csrf_token %}
+                  <input type="hidden" name="user_object_pk" value="{{user_object.pk}}">
+                  {% if user_object.is_active == True %}
+                  <button class="btn btn-outline-warning" name="suspend_user">Suspend User</button>
+                  {% else %}
+                  <button class="btn btn-outline-success" name="reactivate_user">Reactivate User</button>
+                  {% endif %}
+                  <button class="btn btn-outline-danger" name="delete_user">Delete User</button>
+                </form>
+              </div>
+            </td>
+          </tr>
+          {% endif %}
+          {% endfor %}
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+{% else %}
+<div class="jumbotron">You do not have access to this page</div>
+{% endif %}
+
+
+{% endblock content %}
