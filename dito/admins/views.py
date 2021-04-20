@@ -13,7 +13,7 @@ class AdminDashboard(FormView, TemplateView, LoginRequiredMixin):
     def get_context_data(self, **kwargs):
         context = super(AdminDashboard, self).get_context_data(**kwargs)
 
-        user_count = User.objects.filter(user_type==2).count()
+        user_count = User.objects.filter(user_type=2).count()
         users = User.objects.all()
 
         context['user_count'] = user_count
