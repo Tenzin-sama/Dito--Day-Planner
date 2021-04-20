@@ -1,0 +1,7 @@
+<form action="." method="POST">
+    {% csrf_token %}
+    <input type="hidden" name="agenda_pk" value="{{agenda.pk}}">
+
+    <button name="remove_agenda" type="button" class="btn btn-lg btn-info btn-purple btn-block border-0 mx-auto"
+                style="width: 200px;">
+                Delete</button>
